@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+	
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="container">
+	    <div th:if="${not #lists.isEmpty(orders)}">
+	        <h2>Order List</h2>
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>menu,quantity</th>
+	                <th>pick up time</th>
+	                <th>status</th>
+	                <th>Price($)</th>
+	                <th>order time</th>
+	                <th>fulfillment time</th>
+	                <th>ready time</th>
+	                <th>Cancel</th>
+	            </tr>
+	            <tr th:each="order : ${orders}">
+	            	<td th:utext="${order.menuorders}">MenuOrders</td>
+	                <td th:text="${order.pickuptime}">PickUpTime</td>
+	                <td th:if="${order.status} == 1">Queued</td>
+	                <td th:if="${order.status} == 2">In-Progress</td>
+	                <td th:if="${order.status} == 3">Fulfilled</td>
+	                <td th:text="${order.price}">Price</td>
+	                <td th:text="${order.ordertime}">OrderTime</td>
+	                <td th:text="${order.f_start_time}">FulfillmentTime</td>
+                  	<td th:text="${order.readytime}">ReadyTime</td>
+	                <td th:if="${order.status} == 1"><a th:href="${'/order/cancel/' + order.id}">Cancel</a></td>
+	                <td th:if="${order.status} != 1">Can not Cancel</td>
+	            </tr>
+	        </table>	
+	    </div>
+	</div>
+</body>
+<footer>
+	<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+</html>

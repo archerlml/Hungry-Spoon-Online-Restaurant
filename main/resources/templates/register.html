@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Spring Framework</title>
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+	<div class="col-md-offset-3">
+		<h2>Register</h2>
+	</div>
+	<hr></hr>
+	<div class="col-md-offset-3" th:if = "${err != null}">
+        <h3><font color="red"><span th:text="${err}">err</span></font></h3>
+    <hr></hr>
+    </div>
+	<div>
+		<form class="form-horizontal" th:object="${user}"
+			th:action="@{/register}" method="post" onsubmit="return validateForm();" name="myForm">
+			<input type="hidden" th:field="*{id}" />
+			<div class="form-group">
+				<label class="col-md-2 col-md-offset-2 control-label">UserName:</label>
+				<div class="col-md-3">
+					<input type="text" class="form-control" th:field="*{username}" required="required"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 col-md-offset-2 control-label">Email:</label>
+				<div class="col-md-3">
+					<input type="text" class="form-control" th:field="*{email}" required="required" name="email"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 col-md-offset-2 control-label">Phone Number:</label>
+				<div class="col-md-3">
+					<input type="text" class="form-control" th:field="*{phonenumber}" required="required" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 col-md-offset-2 control-label">Password:</label>
+				<div class="col-md-3">
+					<input type="password" class="form-control" th:field="*{password}" required="required"/>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-2 col-md-offset-4">
+					<button type="submit" class="btn btn-default">Register</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+</body>
+<script src="js/apiorder.js"></script>
+</html>

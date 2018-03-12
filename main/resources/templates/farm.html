@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head lang="en">
+  <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+  <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+  <style>
+  .text {
+        z-index: 100;
+        position: relative;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        padding:5px;
+        text-align: center;
+        background:#242424;
+      }
+  </style>
+</head>
+<body onload="initMap()">
+	<div class="text">Organic Farm Partners</div>
+   
+    <div id="map-canvas" style="height: 500px;" ></div>
+   
+    <!-- Script for the map -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+    function initMap() {
+        
+        var LatLng0 = {lat: 37.2, lng: -122};
+        var LatLng1 = {lat: 36.787445, lng: -121.361737};
+        var LatLng2 = {lat: 37.553583, lng: -122.054656};
+        var LatLng3 = {lat: 36.985233, lng: -122.036102};
+        var LatLng4 = {lat: 37.342146, lng: -122.015557};
+        var LatLng5 = {lat: 37.263386, lng: -122.332403};
+
+        
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map-canvas'), {
+                                      center: LatLng0,
+                                      scrollwheel: false,
+                                      zoom: 9
+                                      });
+                                      
+                                      // Create a marker and set its position.
+       var marker1 = new google.maps.Marker({
+                                      map: map,
+                                      position: LatLng1
+                                      });
+       var marker2 = new google.maps.Marker({
+                                      map: map,
+                                      position: LatLng2
+                                      });
+       var marker3 = new google.maps.Marker({
+                                      map: map,
+                                      position: LatLng3
+                                      });
+       var marker4 = new google.maps.Marker({
+                                      map: map,
+                                      position: LatLng4
+                                      });
+       var marker5 = new google.maps.Marker({
+                                      map: map,
+                                      position: LatLng5
+                                      });
+       var cityCircle1 = new google.maps.Circle({
+           strokeColor: '#FF0000',
+           strokeOpacity: 0.8,
+           strokeWeight: 2,
+           fillColor: '#FF0000',
+           fillOpacity: 0.35,
+           map: map,
+           center: LatLng1,
+           radius: 3000
+       });
+       var cityCircle2 = new google.maps.Circle({
+           strokeColor: '#FF0000',
+           strokeOpacity: 0.8,
+           strokeWeight: 2,
+           fillColor: '#FF0000',
+           fillOpacity: 0.35,
+           map: map,
+           center: LatLng2,
+           radius: 5000
+       });
+       var cityCircle3 = new google.maps.Circle({
+           strokeColor: '#FF0000',
+           strokeOpacity: 0.8,
+           strokeWeight: 2,
+           fillColor: '#FF0000',
+           fillOpacity: 0.35,
+           map: map,
+           center: LatLng3,
+           radius: 5000
+       });
+       var cityCircle4 = new google.maps.Circle({
+           strokeColor: '#FF0000',
+           strokeOpacity: 0.8,
+           strokeWeight: 2,
+           fillColor: '#FF0000',
+           fillOpacity: 0.35,
+           map: map,
+           center: LatLng4,
+           radius: 2000
+       });
+       var cityCircle5 = new google.maps.Circle({
+           strokeColor: '#FF0000',
+           strokeOpacity: 0.8,
+           strokeWeight: 2,
+           fillColor: '#FF0000',
+           fillOpacity: 0.35,
+           map: map,
+           center: LatLng5,
+           radius: 10000
+       });
+    }
+    </script>
+
+</body>
+
+</html>

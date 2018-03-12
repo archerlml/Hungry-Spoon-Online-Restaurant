@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework Guru</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<div class="container">
+    
+    <hr></hr>
+    <h2>Product Details</h2>
+    <hr></hr>
+    <div>
+        <form id="upload-file-form" class="form-horizontal" th:object="${menu}" th:action="@{/menu}" method="post">
+            <input type="hidden" th:field="*{id}"/>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Category:</label>
+                <div class="col-sm-10">
+	                <select class="form-control" th:field="*{category}">
+					  <option value="1">Drink</option>
+					  <option value="2">Appetizer</option>
+					  <option value="3">Main Course</option>
+					  <option value="4">Dessert</option>
+					</select>
+                    <!--  <input type="text" class="form-control" th:field="*{category}"/> -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Calories:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{calories}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{name}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Price:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{unitPrice}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <input id="picture" type="text" class="form-control hidden" th:field="*{picture}"/>
+                <label for="upload-file-input" class="col-sm-2 control-label">Upload Image(&lt;1MB):</label>
+  				<input id="upload-file-input" type="file" name="uploadfile" accept="*" />
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Preparation Time:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{preparationTime}"/>
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript">
+//bind the on-change event
+$(document).ready(function() {
+  $("#upload-file-input").on("change", uploadFile);
+});
+
+/**
+ * Upload the file sending it via Ajax at the Spring Boot server.
+ */
+function uploadFile() {
+  $.ajax({
+    url: "/uploadFile",
+    type: "POST",
+    data: new FormData($("#upload-file-form")[0]),
+    enctype: 'multipart/form-data',
+    processData: false,
+    contentType: false,
+    cache: false,
+    success: function (result) {
+      alert("upload success!");
+      $("#picture").val(result);
+    },
+    error: function () {
+      alert("upload error!");
+    }
+  });
+} // function uploadFile
+</script>
+</html>

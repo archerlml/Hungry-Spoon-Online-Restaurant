@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    
+</head>
+<body>
+<div class="container-fluid">
+    <div th:fragment="header">
+    	<nav class="navbar navbar-default navbar-static-top navbar-inverse" style="margin-bottom: 0px;">
+	        <div class="navbar-header">
+	            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <a class="navbar-brand" href="#" th:href="@{/}">
+	                <span class="glyphicon glyphicon-home"></span>
+	                Hungry Spoon
+	            </a>
+	        </div>
+	        <div id="cssmenu" class="navbar-collapse collapse">
+	            <ul class="nav navbar-nav">
+	                <li class='has-sub'>
+	                    <a href="#" th:href="@{/menu}" style="width:1000px;"><span class="glyphicon glyphicon-th-list"> Menus</span></a>
+	                    <ul>
+	                    	<li><a href='drink.html'><span><div class="delay1"><img class="image" src="../../static/images/drink.jpg" th:src="@{/images/drink.jpg}" /><header><h1>Drink</h1></header></div></span></a></li>
+					        <li><a href='appetizer.html'><span><div class="delay2"><img class="image" src="../../static/images/appetizer.jpg" th:src="@{/images/appetizer.jpg}" /><header><h1>Appetizer</h1></header></div></span></a></li>
+					        <li><a href='maincourse.html'><span><div class="delay3"><img class="image" src="../../static/images/maincourse.jpg" th:src="@{/images/maincourse.jpg}" /><header><h1>Main Course</h1></header></div></span></a></li>
+					        <li><a href='dessert.html'><span><div class="delay4"><img class="image" src="../../static/images/dessert.jpg" th:src="@{/images/dessert.jpg}" /><header><h1>Dessert</h1></header></div></span></a></li>
+	                    </ul>
+	                </li>
+	            </ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li th:if="${session.UserInfo == null}"><a href="#"
+							th:href="@{/login}"> <span class="glyphicon glyphicon-log-in"
+								th:text="' Login'"></span>
+						</a></li>
+						<li th:if="${session.UserInfo == null}"><a href="#"
+							th:href="@{/register}"> <span
+								class="glyphicon glyphicon-plus" th:text="' register'"></span>
+						</a></li>
+						<li th:if="${session.UserInfo != null}"><a href="#"
+							> <span class="glyphicon glyphicon-user"
+								th:text="' '+${session.UserInfo}"></span>
+						</a></li>
+						<li th:if="${session.UserInfo == 'admin'}"><a href="#"
+							th:href="@{/admin}"> <span
+								class="glyphicon glyphicon-wrench" th:text="' Administrator'"></span>
+						</a></li>
+						<li th:if="${session.UserInfo != null and session.UserInfo != 'admin'} "><a href="#"
+							th:href="@{/order}"> <span
+								class="glyphicon glyphicon-th-list" th:text="' Order'"></span>
+						</a></li>
+						<li th:if="${session.UserInfo != null and session.UserInfo != 'admin'} "><a href="#"
+							th:href="@{/myratings}"> <span
+								class="glyphicon glyphicon-hand-right" th:text="' MyRatings'"></span>
+						</a></li>
+						<li th:if="${session.UserInfo != null}"><a href="#"
+							th:href="@{/logout}"> <span
+								class="glyphicon glyphicon-log-out" th:text="' Logout'"></span>
+						</a></li>
+		        	<li>
+		        	<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		        	</li>
+	            </ul>
+	        </div>
+		</nav>
+    </div>
+</div>
+</body>
+
+</html>

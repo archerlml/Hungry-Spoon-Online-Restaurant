@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+<title>Spring Framework</title>
+
+<!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+
+	<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+	<div class="container">
+		<hr></hr>
+		<h2>Administrator DashBoard</h2>
+		<hr></hr>
+
+		<div>
+			<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+				<li role="presentation" class="active"><a href="#report"
+					aria-controls="report" role="tab" data-toggle="tab">ReportForOrder</a></li>
+				<li role="presentation"><a href="#popularity"
+					aria-controls="popularity" role="tab" data-toggle="tab">ReportForPopularity</a></li>
+				<li role="presentation"><a href="#product"
+					aria-controls="product" role="tab" data-toggle="tab">AddNewMenuItem</a></li>
+				<li role="presentation"><a href="#reset" aria-controls="reset"
+					role="tab" data-toggle="tab">Reset</a></li>
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="report">
+					<hr></hr>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-1 text-right">
+								<b>From:</b>
+							</div>
+							<div class="col-md-2">
+								<input id="start" type="date" />
+							</div>
+							<div class="col-md-1 text-right">
+								<b>End:</b>
+							</div>
+							<div class="col-md-2">
+								<input id="end" type="date" />
+							</div>
+							<div class="col-md-1 text-right">
+								<b>Select by:</b>
+							</div>
+							<div class="col-md-2">
+								<select class="form-control" id="sort_by">
+									<option>Order-Time</option>
+									<option>Fulfillment Start-Time</option>
+								</select>
+							</div>
+							<div class="col-md-1 text-right">
+								<b>Order by:</b>
+							</div>
+							<div class="col-md-2">
+								<select class="form-control" id="order_by">
+									<option>Ascent</option>
+									<option>Descent</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-md-2">
+							<button type="button" class="btn btn-primary" id="reportbutton">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+								Generate Report
+							</button>
+						</div>
+					</div>
+					<hr></hr>
+
+					<div>
+						<h2>Order List</h2>
+						<table class="table table-striped" id="orders_list">
+							<tr>
+								<th>OrderId</th>
+								<th>Order-time</th>
+								<th>Fulfillment start-time</th>
+								<th>Ready-time</th>
+								<th>Pickup-time</th>
+								<th>Status</th>
+								<th>Customer-Email</th>
+								<th>Order-Content</th>
+								<th>Price</th>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				<div role="tabpanel" class="tab-pane" id="popularity">
+					<hr></hr>
+					<div class="form-group">
+						<div class="row">
+							<div class="col-md-1 text-right">
+								<b>From:</b>
+							</div>
+							<div class="col-md-2">
+								<input id="p_start" type="date" />
+							</div>
+							<div class="col-md-1 text-right">
+								<b>End:</b>
+							</div>
+							<div class="col-md-2">
+								<input id="p_end" type="date" />
+							</div>
+							<div class="col-md-6"></div>
+						</div>
+					</div>
+					<hr></hr>
+					<div class="row">
+						<div class="col-md-2">
+							<button type="button" class="btn btn-primary" id="p_button">
+								<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+								Generate Report
+							</button>
+						</div>
+					</div>
+					<hr></hr>
+					<div>
+						<h2>Top Popularity</h2>
+						<table class="table table-striped" id="p_orders_list">
+							<tr>
+								<th>Category</th>
+								<th>Menu Name</th>
+								<th>Quantity</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="product">
+					<hr></hr>
+					<div class="row">
+						<div class="col-md-2">
+							<a href="#" th:href="@{/menu/new}" class="btn btn-primary"
+								role="button">Add New Menu</a>
+						</div>
+					</div>
+					<hr></hr>
+				</div>
+				<div role="tabpanel" class="tab-pane" id="reset">
+					<hr></hr>
+					<div class="row">
+						<div class="col-md-2">
+							<button type="button" class="btn btn-danger" id="resetbutton">
+								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+								Reset
+							</button>
+						</div>
+					</div>
+					<hr></hr>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+</body>
+<footer>
+	<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+<script src="js/apiorder.js"></script>
+</html>
+

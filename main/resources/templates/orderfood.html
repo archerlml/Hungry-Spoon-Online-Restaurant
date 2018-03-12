@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+	
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="container">
+	    <div th:if="${not #lists.isEmpty(menuitems1)}">
+	        <h2 id="Trigger1">Drink List</h2>
+	        <div id="Slider1" class="show1">
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>Select</th>
+	            	<th>Image</th>
+	                <th>Name</th>
+	                <th>Calories</th>
+	                <th>Price($)</th>
+	                <th>Count</th>
+	                <th>Rating</th>
+	                <th>View</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Edit</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Delete</th>
+	            </tr>
+	            <tr th:each="menu : ${menuitems1}">
+	            	<td class="price col-md-1"><input th:value="${menu.id}" th:attr="data-price=${menu.unitPrice}, data-ptime=${menu.preparationTime}" type="checkbox" /></td>
+	            	<td class="col-md-2"><img class="this-img" th:src="${'/images/' + menu.picture}"></img></td>
+	                <td class="col-md-2 name" th:text="${menu.name}" >Name</td>
+	                <td class="col-md-1" th:text="${menu.calories}">Calories</td>
+	                <td class="col-md-1" th:text="${menu.unitPrice}">Price</td>
+	                <td class="col-md-2 count"><input type="number" class="form-control" value="1" min="1" max="100" id="inpcount1"/></td>
+                  	<td class="col-md-2" th:text="${#numbers.formatDecimal(menu.rating,1,1)}">Rating</td>
+                  	<td ><a th:href="${'/menu/' + menu.id}">View</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/edit/' + menu.id}">Edit</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/delete/' + menu.id}">Delete</a></td>
+	            </tr>
+	        </table>
+			</div>
+	    </div>
+	    <div th:if="${not #lists.isEmpty(menuitems2)}">
+	        <h2 id="Trigger2">Appetizer List</h2>
+	        <div id="Slider2" class="show2">
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>Select</th>
+	            	<th>Image</th>
+	                <th>Name</th>
+	                <th>Calories</th>
+	                <th>Price($)</th>
+	                <th>Count</th>
+	                <th>Rating</th>
+	                <th>View</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Edit</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Delete</th>
+	            </tr>
+	            <tr th:each="menu : ${menuitems2}">
+	            	<td class="price col-md-1"><input th:value="${menu.id}" th:attr="data-price=${menu.unitPrice}, data-ptime=${menu.preparationTime}" type="checkbox" /></td>
+	            	<td class="col-md-2"><img class="this-img" th:src="${'/images/' + menu.picture}"></img></td>
+	                <td class="col-md-2 name" th:text="${menu.name}">Name</td>
+	                <td class="col-md-1" th:text="${menu.calories}">Calories</td>
+	                <td class="col-md-1" th:text="${menu.unitPrice}">Price</td>
+	                <td class="col-md-2 count"><input type="number" class="form-control" value="1" min="1" max="100" id="inpcount2"/></td>
+	                <td class="col-md-2" th:text="${#numbers.formatDecimal(menu.rating,1,1)}">Rating</td>
+	                <td><a th:href="${'/menu/' + menu.id}">View</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/edit/' + menu.id}">Edit</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/delete/' + menu.id}">Delete</a></td>
+	            </tr>
+	        </table>
+	</div>
+	    </div>
+	    <div th:if="${not #lists.isEmpty(menuitems3)}">
+	         <h2 id="Trigger3">MainCourse List</h2>
+	        <div id="Slider3" class="show3">
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>Select</th>
+	            	<th>Image</th>
+	                <th>Name</th>
+	                <th>Calories</th>
+	                <th>Price($)</th>
+	                <th>Count</th>
+	                <th>Rating</th>
+	                <th>View</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Edit</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Delete</th>
+	            </tr>
+	            <tr th:each="menu : ${menuitems3}">
+	            	<td class="price col-md-1" ><input th:value="${menu.id}" th:attr="data-price=${menu.unitPrice}, data-ptime=${menu.preparationTime}" type="checkbox" /></td>
+	            	<td class="col-md-2"><img class="this-img" th:src="${'/images/' + menu.picture}"></img></td>
+	                <td class="col-md-2 name" th:text="${menu.name}">Name</td>
+	                <td class="col-md-1" th:text="${menu.calories}">Calories</td>
+	                <td class="col-md-1" th:text="${menu.unitPrice}">Price</td>
+	                <td class="col-md-2 count"><input type="number" class="form-control" value="1" min="1" max="100" id="inpcount3"/></td>
+	                <td class="col-md-2" th:text="${#numbers.formatDecimal(menu.rating,1,1)}">Rating</td>
+	                <td><a th:href="${'/menu/' + menu.id}">View</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/edit/' + menu.id}">Edit</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/delete/' + menu.id}">Delete</a></td>
+	            </tr>
+	        </table>
+	</div>
+	    </div>
+	    <div th:if="${not #lists.isEmpty(menuitems4)}">
+	        <h2 id="Trigger4">Desert List</h2>
+	        <div id="Slider4" class="show4">
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>Select</th>
+	            	<th>Image</th>
+	                <th>Name</th>
+	                <th>Calories</th>
+	                <th>Price($)</th>
+	                <th>Count</th>
+	                <th>Rating</th>
+	                <th>View</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Edit</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Delete</th>
+	            </tr>
+	            <tr th:each="menu : ${menuitems4}">
+	            	<td class="price col-md-1"><input th:value="${menu.id}" th:attr="data-price=${menu.unitPrice}, data-ptime=${menu.preparationTime}" type="checkbox" /></td>
+	            	<td class="col-md-2"><img class="this-img" th:src="${'/images/' + menu.picture}"></img></td>
+	                <td class="col-md-2 name" th:text="${menu.name}" >Name</td>
+	                <td class="col-md-1" th:text="${menu.calories}">Calories</td>
+	                <td class="col-md-1" th:text="${menu.unitPrice}">Price</td>
+	                <td class="col-md-2 count"><input type="number" class="form-control" value="1" min="1" max="100" id="inpcount4"/></td>
+	                <td class="col-md-2" th:text="${#numbers.formatDecimal(menu.rating,1,1)}">Rating</td>
+	                <td><a th:href="${'/menu/' + menu.id}">View</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/edit/' + menu.id}">Edit</a></td>
+	                <td th:if="${session.UserInfo == 'admin'}"><a th:href="${'/menu/delete/' + menu.id}">Delete</a></td>
+	            </tr>
+	        </table>
+	</div>
+	    </div>
+	    <hr></hr>
+	    <input id="uid" type="text" class="hidden" th:value="${session?.UserId}" />
+	    <div class="row" th:if="${session.UserInfo != 'admin'}">
+	    	<div class="col-md-3 text-right">Select Pickup Time:</div>
+	    	<div class="col-md-9"><input id="pickup" type="datetime-local" /></div>
+	    </div>
+	    <br />
+	    <div class="row" th:if="${session.UserInfo != 'admin'}">
+	    	<div class="col-md-3 text-right">Total Time: </div> 
+	    	<div class="col-md-2" id="totalTime">0</div>
+	    	<div class="col-md-3 text-right">Total Money: $</div> 
+	    	<div class="col-md-2" id="totalMoney">0</div>
+	    	<div class="col-md-2">
+	    		<button id="checkout">Check Out</button>
+	    	</div>
+	    </div>
+	    <div class="row" th:if="${session.UserInfo != 'admin'}">
+	    	<button id="getTime">Get Earliest Time</button>
+	    </div>
+	    <br /><br />
+	</div>
+	<form class="form-horizontal" th:object="${order}" th:action="@{/checkout}" method="post" target="_blank">
+        <input type="hidden" th:field="*{id}"/>
+        <input id="userId" type="text" class="hidden" th:field="*{userId}" />
+        <input id="menuOrders" type="text" class="hidden" th:field="*{menuorders}" />
+        <input id="pickuptime" type="text" class="hidden" th:field="*{pickuptime}" />
+        <input id="ptime" type="text" class="hidden" th:field="*{preparetime}" />
+        <input id="totalprice" type="text" class="hidden" th:field="*{price}" />
+        <div class="row">
+            <input id="btnSubmit" type="submit" class="hidden" />
+        </div>
+    </form>
+</body>
+<footer>
+	<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+<script type="text/javascript">
+var inpcount1 = document.getElementById('inpcount1');
+var inpcount2 = document.getElementById('inpcount2');
+var inpcount3 = document.getElementById('inpcount3');
+var inpcount4 = document.getElementById('inpcount4');
+
+inpcount1.onblur=function(){
+  if(inpcount1.value > 100){
+    alert('item count cannot exceed 100');
+  }
+}
+inpcount2.onblur=function(){
+	  if(inpcount2.value > 100){
+	    alert('item count cannot exceed 100');
+	  }
+}
+inpcount3.onblur=function(){
+	  if(inpcount3.value > 100){
+	    alert('item count cannot exceed 100');
+	  }
+}
+inpcount4.onblur=function(){
+	  if(inpcount4.value > 100){
+	    alert('item count cannot exceed 100');
+	  }
+}
+</script>
+<script type="text/javascript">
+	var money = 0;
+	var menus = new Array();
+	var menusname = new Array();
+	var ptime = 0;
+	$('input:checkbox').click(function(){
+		if ($(this).is(':checked')){
+			var curMoney = $(this).attr('data-price');
+			var preTime = $(this).attr('data-ptime');
+			var name = $(this).closest('tr').children('td.name').text();
+			var count = $(this).closest('tr').children('td.count').find('input').val();
+			var id = $(this).val();
+			menus[Number(id)] = Number(count);
+			menusname[Number(id)] = name;
+			money += Number(curMoney) * Number(count);
+			ptime += Number(preTime) * Number(count);
+			$('#totalMoney').text(money);
+			$('#totalTime').text(ptime);
+		} else {
+			var curMoney = $(this).attr('data-price');
+			var preTime = $(this).attr('data-ptime');
+			var name = $(this).closest('tr').children('td.name').text();
+			var count = $(this).closest('tr').children('td.count').find('input').val();
+			var id = $(this).val();
+			menus[Number(id)] = undefined;
+			menusname[Number(id)] = undefined;
+			money -= Number(curMoney) * Number(count);
+			ptime -= Number(preTime) * Number(count);
+			$('#totalMoney').text(money);
+			$('#totalTime').text(ptime);
+		}
+	});
+	$(':input[type="number"]').bind('keyup mouseup', function (){
+		if ($(this).closest('tr').children('td.price').find('input').is(':checked')) {
+			money = 0;
+			ptime = 0;
+			$('input:checkbox').each(function () {
+				if ($(this).is(':checked')) {
+			        var curMoney = $(this).attr('data-price');
+			        var preTime = $(this).attr('data-ptime');
+			        var id = $(this).val();
+			        var name = $(this).closest('tr').children('td.name').text();
+			        var count = $(this).closest('tr').children('td.count').find('input').val();
+			        menus[Number(id)] = Number(count);
+			        menusname[Number(id)] = name;
+			        money += Number(curMoney) * Number(count);
+			        ptime += Number(preTime) * Number(count);
+				}
+			});
+			$('#totalMoney').text(money);
+			$('#totalTime').text(ptime);
+		}
+	});
+	$('#checkout').click(function() {
+		$('#menuOrders').val("");
+		if (money == 0) {
+			alert("Please select at least a menu!");
+			return;
+		} 
+		
+		var uid = $('#uid').val();
+		var pickup = $('#pickup').val();
+		if (pickup == "") {
+			alert("Please select a pickup time!");
+			return;
+		}
+		var datetime = pickup.split('T');
+		for (var i = menus.length - 1; i >= 0; i--) {
+			if (menus[i] != undefined) {
+				var temp = $('#menuOrders').val();
+				$('#menuOrders').val(temp + menusname[i] + ',' + Number(menus[i]) + ';');
+			}
+		}
+		$('#userId').val(Number(uid));
+		$('#pickuptime').val(datetime[0] + ' ' + datetime[1]);
+		$('#ptime').val(ptime);
+		$('#totalprice').val(money);
+		$('#btnSubmit').click();
+		
+	});
+	$('#getTime').click(function() {
+		//var pickup = $('#pickup').val();
+		//var datetime = pickup.split('T');
+		window.open('http://52.33.234.249:8080/earlytime?ptime=' + ptime,'','width=500,height=300');
+		//window.open('http://localhost:8080/earlytime?ptime=' + ptime + 'Q' + pickup,'','width=500,height=300');
+	});
+</script>
+<script data-require="jquery@2.0.3" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+$('#Trigger1').click(function(){
+    $('#Slider1').toggleClass('hide1').toggleClass('show1');
+    return false;
+});
+$('#Trigger2').click(function(){
+    $('#Slider2').toggleClass('hide2').toggleClass('show2');
+    return false;
+});
+$('#Trigger3').click(function(){
+    $('#Slider3').toggleClass('hide3').toggleClass('show3');
+    return false;
+});
+$('#Trigger4').click(function(){
+    $('#Slider4').toggleClass('hide4').toggleClass('show4');
+    return false;
+});
+</script>
+</html>

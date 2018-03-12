@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework Guru</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+<body>
+	<div class="container">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+    <h2>Menu Details</h2>
+        <div class="row">
+        	<div class="col-md-6">
+        		<img class="detail-img" th:src="${'/images/' + menu.picture}"></img>
+        	</div>
+        	<div class="col-md-6">
+	            <form class="form-horizontal" th:object="${order}" th:action="@{/addMenu}" method="post">
+	                <input type="hidden" th:value="${menu.id}" id="menuId" />
+	                <div class="form-group">
+	                    <label class="col-md-3 control-label">Calories:</label>
+	                    <div class="col-md-7">
+	                        <p class="form-control-static" th:text="${menu.calories}">Calories</p>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-md-3 control-label">Name:</label>
+	                    <div class="col-md-7">
+	                        <p class="form-control-static" th:text="${menu.name}">Name</p>
+	                    </div>
+	                </div>
+	                <div class="form-group">
+	                    <label class="col-md-3 control-label">Price:</label>
+	                    <div class="col-md-7">
+	                        <p class="form-control-static" th:text="${'$' + menu.unitPrice}">Price</p>
+	                    </div>
+	                </div>
+	                
+	               	<div class="form-group">
+	                    <label class="col-md-3 control-label">Rating:</label>
+	                    <div class="col-md-7">
+	                        <p class="form-control-static" th:text="${#numbers.formatDecimal(rating, 1, 1)}">Price</p>
+	                    </div>
+	                </div>
+	                
+	                
+	            </form>
+            </div>
+    	</div>
+	</div>
+<script language="javascript">
+var inpcount = document.getElementById('inpcount');
+inpcount.onblur=function(){
+  if(inpcount.value > 100){
+    alert('item count cannot exceed 100');
+  }
+}
+</script>
+</body>
+</html>

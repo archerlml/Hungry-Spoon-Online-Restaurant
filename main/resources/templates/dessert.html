@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+	
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="container">
+	    <div th:if="${not #lists.isEmpty(menuitems4)}">
+	        <h2>Dessert List</h2>
+	        <table class="table table-striped">
+	            <tr>
+	            	<th>Select</th>
+	            	<th>Image</th>
+	                <th>Name</th>
+	                <th>Calories</th>
+	                <th>Price($)</th>
+	                <th>Count</th>
+	                <th>View</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Edit</th>
+	                <th th:if="${session.UserInfo == 'admin'}">Delete</th>
+	            </tr>
+	            <tr th:each="menu : ${menuitems4}">
+	            	<td class="price"><input th:value="${menu.id}" th:attr="data-price=${menu.unitPrice}, data-ptime=${menu.preparationTime}" type="checkbox" /></td>
+	            	<td><img class="this-img" th:src="${'/images/' + menu.picture}"></img></td>
+	                <td th:text="${menu.name}">Name</td>
+	                <td th:text="${menu.calories}">Calories</td>
+	                <td th:text="${menu.unitPrice}">Price</td>
+	                <td class="count"><input type="number" class="form-control" value="1" min="1" max="100" id="inpcount4"/></td>
+                  	<td><a th:href="${'/menu/' + menu.id}">View</a></td>
+	                <td><a th:href="${'/menu/edit/' + menu.id}">Edit</a></td>
+	                <td><a th:href="${'/menu/delete/' + menu.id}">Delete</a></td>
+	            </tr>
+	        </table>
+	
+	    </div>
+	 </div>
+	    
+</body>
+<footer>
+	<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+<script type="text/javascript">
+var inpcount4 = document.getElementById('inpcount4');
+inpcount4.onblur=function(){
+	  if(inpcount4.value > 100){
+	    alert('item count cannot exceed 100');
+	  }
+}
+</script>
+</html>

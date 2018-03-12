@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Spring Framework</title>
+
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+</head>
+
+<body>
+	
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div class="container">
+	    <div th:if="not ${myratings.isEmpty()}">
+	        <h2>My ratings:</h2>
+	        <h4>You only see item available for rating submission when it's PICKED UP!</h4>
+	        <table class="table table-striped">
+				<tr th:each="entry  : ${myratings}">
+					<br /><br />
+					<td th:text="'Order ID: ' +  ${entry.key}">Order ID</td>
+					
+					<table class="table table-striped table-bordered">
+						<tr>
+							<th>Menu Item Id</th>
+							<th>Menu Item Name</th>
+							<th>Menu Image</th>
+							<th>Rating</th>
+						</tr>
+						<tr th:each="myrating : ${entry.value}">
+							<td class="col-md-2" th:text="${myrating.menuItemId}">MenuItem ID</td>
+							<td class="col-md-2" th:text="${myrating.menuItem.name}"> MenuItem </td>
+							<td class="col-md-3"><img class="this-img" th:src="${'/images/' + myrating.menuItem.picture}"></img></td>
+							<td th:if="${myrating.rated}"><a 
+								th:text="'Your Rating: ' +  ${myrating.rating}">3</a></td>
+							<td th:if="not ${myrating.rated}">Rate Now!
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/0'}">0</a>
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/1'}">1</a>
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/2'}">2</a>
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/3'}">3</a>
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/4'}">4</a>
+							<a th:href="${'/rating/' + myrating.orderId + '/' + myrating.menuItemId + '/5'}">5</a>
+							
+							</td>
+						</tr>
+					</table>
+				</tr>
+			</table>	
+	    </div>
+	</div>
+</body>
+<footer>
+	<!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</footer>
+</html>
